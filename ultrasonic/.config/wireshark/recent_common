@@ -1,0 +1,175 @@
+# Recent settings file for Wireshark 2.4.6.
+#
+# This file is regenerated each time Wireshark is quit.
+# So be careful, if you want to make manual changes here.
+
+######## Recent capture files (latest last), cannot be altered through command line ########
+
+recent.capture_file: /Users/taeklim.kim/Downloads/aa.pcapng
+recent.capture_file: /Users/taeklim.kim/KT DNS Kor Web.pcapng
+recent.capture_file: /Users/taeklim.kim/Downloads/Wireshark assgn1/KT DNS US Web.pcapng
+recent.capture_file: /Users/taeklim.kim/Downloads/Wireshark assgn1/Google DNS US Web.pcapng
+recent.capture_file: /Users/taeklim.kim/Downloads/Wireshark assgn1/Before Flush DNS Cache.pcapng
+recent.capture_file: /Users/taeklim.kim/Downloads/Wireshark assgn1/After Flush DNS Cache.pcapng
+recent.capture_file: /Users/taeklim.kim/Desktop/Onedrive_Retrans.pcapng
+recent.capture_file: /Users/taeklim.kim/Desktop/Onedrive_App.pcapng
+recent.capture_file: /Users/taeklim.kim/Desktop/Onedrive_Web.pcapng
+recent.capture_file: /Users/taeklim.kim/Desktop/Onedrive_SegFlow.pcapng
+
+######## Recent capture filters (latest last), cannot be altered through command line ########
+
+recent.capture_filter: host 192.168.1.141
+recent.capture_filter: tcp
+recent.capture_filter.en0: host 192.168.1.141
+recent.capture_filter.en0: tcp
+
+######## Recent display filters (latest last), cannot be altered through command line ########
+
+recent.display_filter: http && tcp
+recent.display_filter: http
+recent.display_filter: tcp
+recent.display_filter: dns.time
+recent.display_filter: http2
+recent.display_filter: dns && ip.dst==168.126.63.1
+recent.display_filter: ip.src == 192.168.1.141 && dns
+recent.display_filter: bittorrent
+recent.display_filter: imap
+recent.display_filter: pop
+
+# Main window geometry.
+# Decimal numbers.
+gui.geometry_main_x: 1440
+gui.geometry_main_y: -158
+gui.gtk.geometry_main_x: 20
+gui.gtk.geometry_main_y: 20
+gui.geometry_main_width: 1506
+gui.geometry_main_height: 1036
+
+# Main window maximized.
+# TRUE or FALSE (case-insensitive).
+gui.geometry_main_maximized: FALSE
+
+# Statusbar left pane size.
+# Decimal number.
+gui.geometry_status_pane: 250
+
+# Statusbar middle pane size.
+# Decimal number.
+gui.geometry_status_pane_right: 250
+
+# Last used Configuration Profile.
+gui.last_used_profile: Default
+
+# WLAN statistics upper pane size.
+# Decimal number.
+gui.geometry_status_wlan_stats_pane: 200
+
+# Warn if running with elevated permissions (e.g. as root).
+# TRUE or FALSE (case-insensitive).
+privs.warn_if_elevated: TRUE
+
+# Warn if npf.sys isn't loaded on Windows >= 6.0.
+# TRUE or FALSE (case-insensitive).
+privs.warn_if_no_npf: TRUE
+
+# Geometry and maximized state of PreferencesDialog window.
+# Decimal integers.
+gui.geom.PreferencesDialog.x: 1811
+gui.geom.PreferencesDialog.y: 38
+gui.geom.PreferencesDialog.width: 732
+gui.geom.PreferencesDialog.height: 475
+# TRUE or FALSE (case-insensitive).
+gui.geom.PreferencesDialog.maximized: FALSE
+
+# Geometry and maximized state of ExpertInfoDialog window.
+# Decimal integers.
+gui.geom.ExpertInfoDialog.x: 0
+gui.geom.ExpertInfoDialog.y: 22
+gui.geom.ExpertInfoDialog.width: 620
+gui.geom.ExpertInfoDialog.height: 796
+# TRUE or FALSE (case-insensitive).
+gui.geom.ExpertInfoDialog.maximized: FALSE
+
+# Geometry and maximized state of ProtocolHierarchyDialog window.
+# Decimal integers.
+gui.geom.ProtocolHierarchyDialog.x: 1542
+gui.geom.ProtocolHierarchyDialog.y: -78
+gui.geom.ProtocolHierarchyDialog.width: 808
+gui.geom.ProtocolHierarchyDialog.height: 636
+# TRUE or FALSE (case-insensitive).
+gui.geom.ProtocolHierarchyDialog.maximized: FALSE
+
+# Geometry and maximized state of FilterDialog window.
+# Decimal integers.
+gui.geom.FilterDialog.x: 2312
+gui.geom.FilterDialog.y: 120
+gui.geom.FilterDialog.width: 673
+gui.geom.FilterDialog.height: 532
+# TRUE or FALSE (case-insensitive).
+gui.geom.FilterDialog.maximized: FALSE
+
+# Geometry and maximized state of plen window.
+# Decimal integers.
+gui.geom.plen.x: 2289
+gui.geom.plen.y: 173
+gui.geom.plen.width: 800
+gui.geom.plen.height: 459
+# TRUE or FALSE (case-insensitive).
+gui.geom.plen.maximized: FALSE
+
+# Geometry and maximized state of dns window.
+# Decimal integers.
+gui.geom.dns.x: 1718
+gui.geom.dns.y: 98
+gui.geom.dns.width: 800
+gui.geom.dns.height: 459
+# TRUE or FALSE (case-insensitive).
+gui.geom.dns.maximized: FALSE
+
+# Geometry and maximized state of IOGraphDialog window.
+# Decimal integers.
+gui.geom.IOGraphDialog.x: 1683
+gui.geom.IOGraphDialog.y: 9
+gui.geom.IOGraphDialog.width: 850
+gui.geom.IOGraphDialog.height: 740
+# TRUE or FALSE (case-insensitive).
+gui.geom.IOGraphDialog.maximized: FALSE
+
+# Geometry and maximized state of PacketDialog window.
+# Decimal integers.
+gui.geom.PacketDialog.x: 2384
+gui.geom.PacketDialog.y: 142
+gui.geom.PacketDialog.width: 808
+gui.geom.PacketDialog.height: 639
+# TRUE or FALSE (case-insensitive).
+gui.geom.PacketDialog.maximized: FALSE
+
+# Geometry and maximized state of http window.
+# Decimal integers.
+gui.geom.http.x: 1629
+gui.geom.http.y: 191
+gui.geom.http.width: 800
+gui.geom.http.height: 459
+# TRUE or FALSE (case-insensitive).
+gui.geom.http.maximized: FALSE
+
+# Geometry and maximized state of SequenceDialog window.
+# Decimal integers.
+gui.geom.SequenceDialog.x: 1441
+gui.geom.SequenceDialog.y: -78
+gui.geom.SequenceDialog.width: 1010
+gui.geom.SequenceDialog.height: 636
+# TRUE or FALSE (case-insensitive).
+gui.geom.SequenceDialog.maximized: FALSE
+
+# Custom colors.
+# List of custom colors selected in Qt color picker.
+gui.custom_colors: 
+	"ffffffff", "ffffffff",
+	"ffffffff", "ffffffff",
+	"ffffffff", "ffffffff",
+	"ffffffff", "ffffffff",
+	"ffffffff", "ffffffff",
+	"ffffffff", "ffffffff",
+	"ffffffff", "ffffffff",
+	"ffffffff", "ffffffff"

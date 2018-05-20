@@ -1,15 +1,16 @@
-#include <main.h>
+#include "main.h"
 
 #include <wiringPi.h>
 #include <lcd.h>
 #include <stdio.h>
 
-#define LCD_RS 11
-#define LCD_E 10
-#define LCD_D4 6
-#define LCD_D5 5
-#define LCD_D6 4
-#define LCD_D7 1
+#define LCD_RS 9
+#define LCD_E 8
+
+#define LCD_D4 3
+#define LCD_D5 2
+#define LCD_D6 1
+#define LCD_D7 0
 
 void lcdprint (char * msg)
 {

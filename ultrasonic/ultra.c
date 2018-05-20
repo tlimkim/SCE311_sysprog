@@ -1,4 +1,4 @@
-#include <main.h>
+#include "main.h"
 
 #include <stdio.h>
 #include <wiringPi.h>
@@ -24,6 +24,7 @@ void sonic_distance(void)
 
     while (1)
     {
+	printf("im here \n");
 	digitalWrite(trigPin, LOW);
 	sleep(2);
 	digitalWrite(trigPin, HIGH);
