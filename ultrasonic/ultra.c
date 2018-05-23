@@ -9,6 +9,8 @@
 #define trigPin 4
 #define echoPin 5
 
+int lcdflag = 0;
+
 void sonic_distance(void)
 {
     int distance = 0;
@@ -24,9 +26,8 @@ void sonic_distance(void)
 
     while (1)
     {
-	printf("im here \n");
 	digitalWrite(trigPin, LOW);
-	sleep(2);
+	sleep(1);
 	digitalWrite(trigPin, HIGH);
 	usleep(20);
 	digitalWrite(trigPin, LOW);
@@ -42,11 +43,13 @@ void sonic_distance(void)
 	int distance = duration / 58;
 
 	printf("Distance: %dcm\n", distance);
-	count++;
 
-	//printf("count: %d\n\n",count);
 	if (distance <= 5) {
-	    lcdprint("Baby is in Danger! \n");
+	    lcdprint("Dangerous Baby");
+	    lcdflag = 1;
+    	    continue;
+	} else if (distance > 5 && lcdflag ==1 ) {
+	    lcdclear();
 	}
     }
-}
+}	

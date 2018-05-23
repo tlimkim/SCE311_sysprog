@@ -3,5 +3,7 @@
 
 void sonic_distance(void);
 void lcdprint();
+void lcdclear();
+
 
 #endif
