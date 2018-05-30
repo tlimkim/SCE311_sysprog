@@ -13,10 +13,8 @@ int main(void)
 
 FUNC1:
     printf("In loop1 \n");
-    if (sonic_distance() == 1) {
+    if (sonic_distance() == 1)
       printf("LED \n");
-      ledOn();
-    }
     goto FUNC2;
   }
 
