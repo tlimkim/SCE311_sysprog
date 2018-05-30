@@ -17,6 +17,8 @@ FUNC1:
       printf("LED \n");
       ledOn();
     }
+    if (sonic_distance() == 1)
+      printf("LED \n");
     goto FUNC2;
   }
 

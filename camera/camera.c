@@ -1,27 +1,39 @@
 #include <wiringPi.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 
 #define butPin 23
 
-int main(void){
-	if(wiringPiSetup()==-1)
+int camera(void){
+	if(wiringPiSetupGpio()==-1)
 		return 1;
 
 
 	pinMode(butPin,INPUT);
+	//pullUpDnControl(butPin,PUD_UP);
 	
-	while(1){
+
 		int ret=digitalRead(butPin);
-		if(ret)
-		{
+		while(1){
+		if(ret==0)
+		{	
+			printf("pressed!");
 			system("raspistill -o image.jpg");
-			//continue;
+			
+		
 		}
-		else
-			continue;
-	}
-	return 0;
+		else if(ret==1){
+			delay(5);
+			printf("no");
+		}
+		
+		}
+
 
 }
+int main(void){
+camera();
+}
+
