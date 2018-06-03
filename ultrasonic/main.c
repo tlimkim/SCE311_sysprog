@@ -1,3 +1,11 @@
+/*
+ * Developed by TaekLim Kim
+ *
+ * In this main.c, it calls several sensors like ultrasonic, Humid, 
+ * Sound and also LCD & LED outputs.
+ * This function works as control part of the system 
+ */
+
 #include "main.h"
 
 #include <stdio.h>
@@ -12,12 +20,13 @@ int main(void)
   while(1) {
 
 FUNC1:
-    printf("In loop1 \n");
-    
+    // Call for checking Distance
+    // sonic_distance() == 1 means that Baby is close
     if (sonic_distance() == 1) {
       printf("LED \n");
       ledOn();
-    } else {
+
+    } else { // Off LED when baby is leaving
       ledOff();
     }
     goto FUNC2;
@@ -26,12 +35,10 @@ FUNC1:
   while(1) {
 
 FUNC2:
-    printf("In loop2 \n");
-    
+    // Call for checking Humidity
     read_dht11_dat();
+    
     goto FUNC1;
   }
-  //sonic_distance();
-  //read_dht11_dat();        
   return 0;
 }
