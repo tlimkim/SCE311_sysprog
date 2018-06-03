@@ -1,3 +1,4 @@
+
 #include <wiringPi.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -17,7 +18,7 @@
 int Joystick_Read(void);
 void servo_control(int tmp);
 void *thread_joystick(void *arg);
-void thread_camera(void);
+int camera(void);
 
 char message[] = "";
 //raspistill -o image.jpg
@@ -25,8 +26,14 @@ char message[] = "";
 
 int main(void){
 	int tmp;
+	//if(wiringPiSetupGpio()==-1)
+	//	return 1;
 
- 	wiringPiSetup ();
+	wiringPiSetup ();
+	pinMode(butPin,INPUT);
+	pinMode(ledPin,OUTPUT);
+	
+ 	
  	pcf8591Setup (PCF, 0x48) ; // Setup pcf8591 on base pin 120, and address 0x48
  	softPwmCreate(SERVO,0,200);
 
@@ -41,7 +48,7 @@ int main(void){
     	    exit(EXIT_FAILURE);
   	}
   	  printf("Waiting for thread to finish...\n");	
-	 thread_camera();
+	 camera();
  		
 	res[0] = pthread_join(a_thread[0], &thread_result);
 	//res[1] = pthread_join(a_thread[1], &thread_result);
@@ -52,7 +59,7 @@ int main(void){
    	printf("Thread joined, it returned %s\n", (char *)thread_result);
    	printf("Message is now %s\n", message);
     	exit(EXIT_SUCCESS);
-
+	
  	return 0 ;
 }
 
@@ -99,29 +106,31 @@ void *thread_joystick(void *arg) {
 	return((void *)0);
 }
 
+int camera(void){	
+		const char *command="raspistill -o image.jpg";
+		FILE *fp=NULL;
 
-void thread_camera(void ){
-	//wiringPiSetupGpio();
-	pinMode(butPin,INPUT);
-
-	const char *cmd = "raspistill -o image.jpg";
-	int ret=digitalRead(butPin);	
-	while(1){
-
-	
-          if(ret==0){	
-		printf("pressed!\n");
-		FILE *fp = popen(cmd,"r");
-		printf("pressed before!\n");
-		pclose(fp);
-		printf("end!\n");
-			
-		}
 		
+		while(1){
+		int ret=digitalRead(butPin);
+
+		if(ret==0)
+		{		
+			//digitalWrite(ledPin,HIGH);
+			printf("pressed!");
+			//system("raspistill -o image.jpg");
+			fp=popen(command,"r");
+			pclose(fp);
+			printf("close\n");
+		
+		}
 		else if(ret==1){
-			delay(5);
-			printf("w");
-		}
+			//delay(5);
+			printf("w\n");
 		}
 		
+		}
+
+
 }
+
