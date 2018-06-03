@@ -22,6 +22,8 @@ int led_open(struct inode *pinode, struct file *pfile)
 int led_close(struct inode *pinode, struct file *pfile)
 {
   printk("Close LED \n");
+  gpio_request(GPIO1, "GPIO1");
+  gpio_direction_output(GPIO1, 0);
   return 0;
 }
 

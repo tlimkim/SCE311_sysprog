@@ -7,9 +7,11 @@
 
 #define DEV_PATH "/dev/led_dev"
 
+int fd = 0;
+
 void ledOn ()
 { 
-  int fd = 0;
+  //int fd = 0;
 
   if ((fd = open(DEV_PATH, O_RDWR | O_NONBLOCK)) < 0) {
     perror("open()");
@@ -17,7 +19,11 @@ void ledOn ()
   }
 
   printf("LED Success \n");
-  sleep(2);
+  sleep(1);
 
+}
+
+void ledOff()
+{
   close(fd);
 }
