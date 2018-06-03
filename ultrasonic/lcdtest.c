@@ -1,7 +1,7 @@
 /*
  * Developed by Taeklim Kim
  *
- * lcdtest.c is for send a message to LCD output.
+ * lcdtest.c is for sending a message to LCD output.
  * There are two function of lcd_print() and lcd_clear()
  *
  */
