@@ -1,5 +1,8 @@
-exec : lcdtest.o ultra.o main.o dht11.o ledtest.o
-	gcc -o exec main.o ultra.o lcdtest.o dht11.o ledtest.o -lwiringPi -lwiringPiDev
+exec : lcdtest.o ultra.o main.o dht11.o ledtest.o pir_wiring.o
+	gcc -o exec main.o ultra.o lcdtest.o dht11.o ledtest.o pir_wiring.o -lwiringPi -lwiringPiDev
+
+pir_wiring.o : pir_wiring.c
+	gcc -c -o pir_wiring.o pir_wiring.c
 
 ledtest.o : ledtest.c
 	gcc -c -o ledtest.o ledtest.c

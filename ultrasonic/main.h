@@ -7,5 +7,6 @@ void lcd_clear();
 void read_dht11_dat();
 void ledOn();
 void ledOff();
+int Pircheck();
 
 #endif
