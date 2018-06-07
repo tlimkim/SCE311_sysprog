@@ -6,9 +6,7 @@
 #include <stdint.h>
 #define MAXTIMINGS    83
 #define DHTPIN        7 //wPi pin. physical num 7
-
 int dht11_dat[5] = {0, 0, 0, 0, 0};
-int lcdflag_ = 0;
 
 void read_dht11_dat()
 {
@@ -69,19 +67,12 @@ void read_dht11_dat()
   }
   */
 
-  if ((j>=40)&&(dht11_dat[4]==((dht11_dat[0]+dht11_dat[1]+dht11_dat[2]+dht11_dat[3])&0xFF))) {
-
+  if ((j>=40)&&(dht11_dat[4]==((dht11_dat[0]+dht11_dat[1]+dht11_dat[2]+dht11_dat[3])&0xFF)))
+  {
     f = dht11_dat[2] * 9. / 5. + 32;
     printf("Humidity = %d.%d %% Temperature = %d.%d C (%.1f F)\n",
     dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], f );
-    
-    if (dht11_dat[0] >= 78) {
-      lcd_print("Watch out your Baby ");
-      lcdflag_ = 1;
-    } else if (dht11_dat[0] <= 78 && lcdflag_ == 1) {
-      lcd_clear();
-    }
-  } else {
+  }else  {
     printf("Data not good, skip\n");
   }
 }

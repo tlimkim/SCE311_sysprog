@@ -5,4 +5,4 @@ obj-m := pir_dev.o
 PWD := $(shell pwd)
 
 default :
-        $(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules

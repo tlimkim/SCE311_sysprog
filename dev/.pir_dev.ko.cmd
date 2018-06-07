@@ -1,0 +1,1 @@
+cmd_/home/pi/workspace/babycare/dev/pir_dev.ko := ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/pi/workspace/babycare/dev/pir_dev.ko /home/pi/workspace/babycare/dev/pir_dev.o /home/pi/workspace/babycare/dev/pir_dev.mod.o ;  true

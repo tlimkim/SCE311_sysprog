@@ -1,26 +1,23 @@
+#include "main.h"
+
 #include <stdio.h>
-#include <wiringPi.h>
-#define PIR 4       //BCM_GPIO 23
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <sys/time.h>
+#include <fcntl.h>
 
-int Pircheck (void)
+#define NODE_NAME "/dev/pir_dev"
+
+int read_pir_dat(void)
 {
-  if(wiringPiSetup() == -1)
-    return 1;
+  int fd,ret,stat;
+  fd = open(NODE_NAME, O_RDONLY);
 
-  pinMode(PIR,INPUT);
-  for(;;)
-  {
-    int read=digitalRead(PIR);
-    if(read)
-    {
-      printf("Detection\n");
-      delay(1000);
-    }
-    else{
-      printf("Not Detected read: %d\n",read);
-      delay(1000);
-    }
+  ret = read(fd,&stat, sizeof(stat));
 
-  }
-  return 0;
+  printf("[PIR] sensor value: %d\n", stat);
+  usleep(500000);
+  
+  return stat;
 }

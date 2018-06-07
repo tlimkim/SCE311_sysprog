@@ -6,9 +6,9 @@
 
 #include <linux/uaccess.h>
 #include <linux/mutex.h>
-#define GPIO 23
+#define GPIO 21
 #define DEV_NAME "pir_dev"
-#define DEV_NUM 240
+#define DEV_NUM 241
 
 MODULE_LICENSE("GPL");
 static ssize_t pir_read(struct file * file, char * buf, size_t length, loff_t * ofs)
