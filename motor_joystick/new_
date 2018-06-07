@@ -1,8 +1,3 @@
-structure - 시스템 구상도
-왜 했는지
-왜 짯는지
-어떤 시나리오 할 것인지
-
 #include <wiringPi.h>
 #include <unistd.h>
 #include <stdlib.h>
