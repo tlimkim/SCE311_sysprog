@@ -198,7 +198,7 @@ void *thread_Camera(void *arg){
          	strcat(command, fname);
         	fp=popen(command,"r");
         	pclose(fp);
-		receive=1;
+	receive=1;
       		}
       		}
 }
