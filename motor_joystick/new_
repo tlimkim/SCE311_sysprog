@@ -1,3 +1,8 @@
+structure - 시스템 구상도
+왜 했는지
+왜 짯는지
+어떤 시나리오 할 것인지
+
 #include <wiringPi.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -128,8 +133,8 @@ int Joystick_Read(void)
 
 void servo_control(int tmp)
 {
-		if(tmp==0)softPwmWrite(SERVO2,20); // 90 degree
-		else if(tmp== 1)softPwmWrite(SERVO2,9);	//-90 degree
+		if(tmp==0)softPwmWrite(SERVO2,16); // 90 degree
+		else if(tmp== 1)softPwmWrite(SERVO2,14);//-90 degree
 		else if(tmp== 2)softPwmWrite(SERVO1,24);//90 degree
 		else if(tmp== 3)softPwmWrite(SERVO1,5);//-90 degree
 		else if(tmp== 4){
@@ -198,6 +203,7 @@ void *thread_Camera(void *arg){
          	strcat(command, fname);
         	fp=popen(command,"r");
         	pclose(fp);
+		receive=1;
       		}
       		}
 }
@@ -206,6 +212,7 @@ void *thread_Camera(void *arg){
 
 void *thread_Server(void *arg)
 {
+	int cnt=0;
 	//--- infinite wait on a connection ---
 	while (1) {
 		printf("waiting for new client...\n");
