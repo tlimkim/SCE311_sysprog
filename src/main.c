@@ -46,7 +46,7 @@ int main(void)
   char serverIp[] = "192.168.23.42";
   struct sockaddr_in serv_addr;
   struct hostent *server;
- /* 
+  
   if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     perror("Open Error: ");
 
@@ -60,7 +60,7 @@ int main(void)
 
   if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr))< 0)
     perror("Connect Error: ");
-*/
+
   while(1) {
 
 FUNC1:
@@ -86,9 +86,9 @@ FUNC2:
     // Call for checking Humidity
     temp = read_dht11_dat();
     if (read_pir_dat() == 1) {
-      //sendData(sockfd, 1);
+      sendData(sockfd, 1);
     } else {
-      //sendData(sockfd, 0);
+      sendData(sockfd, 0);
     }
 
     goto FUNC1;
