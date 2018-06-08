@@ -42,11 +42,11 @@ int main(void)
   int sonic = 0;
   int temp = 0;
 
-  int sockfd, portno = 8000, n;
-  char serverIp[] = "192.168.24.7";
+  int sockfd, portno = 8888, n;
+  char serverIp[] = "192.168.23.42";
   struct sockaddr_in serv_addr;
   struct hostent *server;
-/*
+ /* 
   if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     perror("Open Error: ");
 
@@ -71,6 +71,7 @@ FUNC1:
     if (sonic == 1) { // sonic_distance() == 1 means that Baby is close
       printf("[LED]\n");
       ledOn();
+      buzzer();
       // add buzzer
 
     } else { // Off LED when baby is leaving
@@ -84,7 +85,6 @@ FUNC1:
 FUNC2:
     // Call for checking Humidity
     temp = read_dht11_dat();
-    //Pircheck();
     if (read_pir_dat() == 1) {
       //sendData(sockfd, 1);
     } else {
