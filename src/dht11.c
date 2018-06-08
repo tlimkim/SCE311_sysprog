@@ -10,7 +10,7 @@
 int dht11_dat[5] = {0, 0, 0, 0, 0};
 int lcdflag_ = 0;
 
-void read_dht11_dat()
+int read_dht11_dat()
 {
     if (wiringPiSetup() == -1) {
       printf("here \n");
@@ -58,19 +58,6 @@ void read_dht11_dat()
     }
   }
 
-  if (j<40)
-     return;
-	
-  /*
-   * debug    
-   */
-  /*
-   printf("j:: %d\n",j);
-  for (i=0;i<5;i++){
-    printf("%d: %d\n",i,dht11_dat[i]);
-  }
-  */
-
   if ((j>=40)&&(dht11_dat[4]==((dht11_dat[0]+dht11_dat[1]+dht11_dat[2]+dht11_dat[3])&0xFF))) {
 
     f = dht11_dat[2] * 9. / 5. + 32;
@@ -78,29 +65,15 @@ void read_dht11_dat()
     dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], f );
     
     if (dht11_dat[0] >= 78) {
-      lcd_print("Watch out your Baby ");
+      lcd_print("Your Baby Pee");
       lcdflag_ = 1;
     } else if (dht11_dat[0] <= 78 && lcdflag_ == 1) {
       lcd_clear();
     }
   } else {
     printf("Data not good, skip\n");
+    return 0;
   }
+  return dht11_dat[2];
 }
-/*
-int 
-main( void )
-{
-  printf("Raspberry Pi wiringPi DHT11 Temperature test program\n");
 
-  if (wiringPiSetup() == -1)
-    exit(1);
-
-  while (1)
-  {
-    read_dht11_dat();
-    delay(1000); 
-  }
-  return(0);
-}*/
-      

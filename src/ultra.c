@@ -66,12 +66,13 @@ int sonic_distance(void)
   if (distance <= 5) {
     lcd_print("Dangerous Baby \n");
     lcdflag = 1;
+    return 1;
 
   // Release the message if a baby is gone.
   } else if (distance > 5 && lcdflag == 1 ) {
-    lcd_clear();
+    //lcd_clear();
     return 0;
   }
 
-  return lcdflag;
+  return 0;
 }	

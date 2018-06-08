@@ -11,6 +11,7 @@
 #include <wiringPi.h>
 #include <lcd.h>
 #include <stdio.h>
+#include <string.h>
 
 #define LCD_RS 9
 #define LCD_E 8
@@ -26,9 +27,12 @@ int lcd = 0;
  * lcd_print activate when a baby is in dangerous range, and
  * a baby have pee on his or her pants
  */
-void lcd_print (char * msg)
+void lcd_print (char * msg, int temp)
 {   
   int lcd;
+  char s1[10];
+  char print[50];
+
   wiringPiSetup();
 
   // Initiating LCD
@@ -38,8 +42,21 @@ void lcd_print (char * msg)
   if (lcd == -1) {
     printf("lcd init failed! \n");
   }
+  
+  if (temp == 0) {
+    lcdPosition(lcd, 0, 0);
+    lcdPuts(lcd, msg);
+    return;
+  }
+
+  strcat(print, msg);
+  strcat(print, " temp: ");
+
+  sprintf(s1, "%d", temp);
+  strcat(print, s1);
+  
   lcdPosition(lcd, 0, 0);
-  lcdPuts(lcd, msg);
+  lcdPuts(lcd, print);
 }
 
 /*

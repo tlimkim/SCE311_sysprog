@@ -38,12 +38,15 @@ void sendData(int sockfd, int x)
 int main(void) 
 {
   printf("Module Started \n");
+  
+  int sonic = 0;
+  int temp = 0;
 
   int sockfd, portno = 8000, n;
   char serverIp[] = "192.168.24.7";
   struct sockaddr_in serv_addr;
   struct hostent *server;
-
+/*
   if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     perror("Open Error: ");
 
@@ -57,15 +60,18 @@ int main(void)
 
   if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr))< 0)
     perror("Connect Error: ");
-
+*/
   while(1) {
 
 FUNC1:
+    if (sonic != 1)
+      lcd_print("babycare!", temp);
     // Call for checking Distance
-    // sonic_distance() == 1 means that Baby is close
-    if (sonic_distance() == 1) {
+    sonic = sonic_distance();
+    if (sonic == 1) { // sonic_distance() == 1 means that Baby is close
       printf("[LED]\n");
       ledOn();
+      // add buzzer
 
     } else { // Off LED when baby is leaving
       ledOff();
@@ -77,12 +83,12 @@ FUNC1:
 
 FUNC2:
     // Call for checking Humidity
-    read_dht11_dat();
+    temp = read_dht11_dat();
     //Pircheck();
     if (read_pir_dat() == 1) {
-      sendData(sockfd, 1);
+      //sendData(sockfd, 1);
     } else {
-      sendData(sockfd, 0);
+      //sendData(sockfd, 0);
     }
 
     goto FUNC1;
