@@ -1,3 +1,12 @@
+/*
+ * Developed by TaekLim Kim
+ *
+ * This source is for buzzer sound.
+ *
+ * But we skip this function for the technical issue of sensor.
+ *
+ */
+
 #include <wiringPi.h>
 #include <stdio.h>
 

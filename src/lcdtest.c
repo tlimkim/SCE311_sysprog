@@ -24,8 +24,11 @@
 int lcd = 0;
 
 /*
- * lcd_print activate when a baby is in dangerous range, and
- * a baby have pee on his or her pants
+ * lcd_print activate when a baby is in dangerous range(distancd), and
+ * if a baby have pee on his or her pants.
+ * It also print the current temperature on the LCD, for checking the baby's status.
+ *
+ * It initiates the LCD First, and puts the message on the LCD.
  */
 void lcd_print (char * msg, int temp)
 {   
@@ -43,6 +46,7 @@ void lcd_print (char * msg, int temp)
     printf("lcd init failed! \n");
   }
   
+  // if there is abnormal temperature data, do not print temp data.
   if (temp == 0) {
     lcdPosition(lcd, 0, 0);
     lcdPuts(lcd, msg);
@@ -60,7 +64,8 @@ void lcd_print (char * msg, int temp)
 }
 
 /*
- * lcd_clear is for Clearing LCD if the baby is no more close enough
+ * lcd_clear is for Clearing LCD if the baby is no more close enough 
+ * (no more dangerous situation)
  */ 
 void lcd_clear() 
 {

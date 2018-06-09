@@ -42,20 +42,17 @@ int sonic_distance(void)
   digitalWrite(trigPin, LOW);
 
   // Send the Sonic and start the time
-  start_time = micros();
   while(digitalRead(echoPin) == LOW) {
-    timeout = micros();
-    if ((timeout - start_time) >= 10000) {
-      return 0;
-    }
+      start_time = micros();
   }
+  
   // Receive the sonic that sent before
   while(digitalRead(echoPin) == HIGH) { 
     travel_time = micros();
   }
 
   // Find out the time that sensor checks
-  duration = travel_time - start_time - 650;
+  duration = travel_time - start_time;
   
   distance = duration / 58;
 
@@ -70,7 +67,7 @@ int sonic_distance(void)
 
   // Release the message if a baby is gone.
   } else if (distance > 5 && lcdflag == 1 ) {
-    //lcd_clear();
+    lcd_clear();
     return 0;
   }
 
