@@ -1,3 +1,9 @@
+/*
+ * Developed by Jiwon Jeon
+ *
+ * pir_test.c
+ * device driver test code
+ */
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>

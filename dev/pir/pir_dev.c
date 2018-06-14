@@ -1,3 +1,8 @@
+/*
+ * Developed by Jiwon Jeon
+ *
+ * pir_dev.c: device driver code for PIR.
+ */
 #include <linux/gpio.h>
 #include <linux/init.h>
 #include <linux/module.h>

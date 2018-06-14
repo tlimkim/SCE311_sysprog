@@ -1,3 +1,9 @@
+/*
+ * Developed by Jiwon Jeon.
+ *
+ * pir_wiring.c uses pir device driver to read sensor read value.
+ * device driver code for PIR is in /dev/pir/
+ */
 #include "main.h"
 
 #include <stdio.h>

@@ -1,3 +1,10 @@
+/*
+ * Developed by Jiwon Jeon
+ *
+ * dht11.c 
+ * read_dht11_dat() is for reading dht11 (temperature - humidity sensor) read value.
+ * implented by wiringPi.
+ */
 #include "main.h"
 
 #include <wiringPi.h>
@@ -13,7 +20,6 @@ int lcdflag_ = 0;
 int read_dht11_dat()
 {
     if (wiringPiSetup() == -1) {
-      printf("here \n");
 	    exit(1);
     }
     delay(1000);
