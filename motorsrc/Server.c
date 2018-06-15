@@ -41,6 +41,13 @@ struct sockaddr_in serv_addr, cli_addr;
 int n;
 int data;
 
+/*
+ * The main function basically sets
+ * GPIO, pinmode, TCP / IP, pcf - ADC function, and Pwm.
+ * Open the button device file in the kernel by file I / O.
+ * We then create three threads to create the joystick, server, and camera threads, respectively. 
+ * Then join the thread and exit.
+ */
 int main(void){
 	int tmp;
 	wiringPiSetup ();
@@ -101,6 +108,11 @@ int main(void){
  	return 0 ;
 }
 
+/*
+ * The joystick read function reads the analog value using the ADC.
+ * If, the value is classified according to each x, y, z value, 
+ * and the up, down, right, left, and key values ​​are classified.
+ */
 
 int Joystick_Read(void)
 {
@@ -114,30 +126,36 @@ int Joystick_Read(void)
  	//printf("z = %d \n", value[2]);
  	if(value[0]==value[1] && value[1]==value[2])
     tmp = 0; // printf("%s\n", dir[0]); // left
- 	if(value[1] > 250 && value[0] < 225 && value[2] < 225)
+ 	else if(value[1] > 250 && value[0] < 225 && value[2] < 225)
     tmp = 2; // printf("%s\n", dir[2]); // up
- 	if(value[1] < 200 && value[1] != value[2] && value[1] != value[0]) // down
+ 	else if(value[1] < 200 && value[1] != value[2] && value[1] != value[0]) // down
     tmp = 3; // printf("%s\n", dir[3]);
- 	if(value[2]<10 && value[0] > 150 && value[0] < 200 && value[1] >200 && value[1] <250)  // right
+ 	else if(value[2]<10 && value[0] > 150 && value[0] < 200 && value[1] >200 && value[1] <250)  // right
     tmp = 1; // printf("%s\n", dir[1]);
- 	if(value[0]<10 && value[1] >200 && value[1] < 250 && value[2] > 150 && value[2] <200) // button
+ 	else if(value[0]<10 && value[1] >200 && value[1] < 250 && value[2] > 150 && value[2] <200) // button
     tmp = 4; // printf("%s\n", dir[4]);
 
     return tmp;
 }
 
-void servo_control(int tmp)
+/* 
+ * It is a function to control servo motor.
+ * Adjust servo motor pwm according to up, down, key value.
+ * void servo_control(int tmp)
+ */
 {
-		//if(tmp==0)softPwmWrite(SERVO2,19); // 90 degree
-		//else if(tmp== 1)softPwmWrite(SERVO2,11);//-90 degree
 		if(tmp== 2)softPwmWrite(SERVO1,16);//90 degree
 		else if(tmp== 3)softPwmWrite(SERVO1,14);//-90 degree
 		else if(tmp== 4){
 		softPwmWrite(SERVO1,15); //0  degree
-		//softPwmWrite(SERVO2,15);
-		}
+			}
 }
 
+/*
+ * It is a joystick thread function.
+ * Continue reading the value of the joystick and control
+ * the servo motor based on the read value.
+ */
 void *thread_joystick(void *arg) {
 	while(1)
 	{
@@ -148,11 +166,17 @@ void *thread_joystick(void *arg) {
 	return((void *)0);
 }
 
+/* 
+ * If an error occurs in the server function, an error is output.
+ */
 void error(char *msg) {
 	perror(msg);
 	exit(1);
 }
 
+/*
+ * The server function reads the data value from the client.
+ */
 int getData(int sockfd) {
 	char buffer[32];
 	int n;
@@ -162,6 +186,11 @@ int getData(int sockfd) {
 	return atoi(buffer);
 }
 
+/*
+ * It is a function that sets TCP / ip.
+ * I created a socket, bound the socket via the TCP / IP address,
+ * and set the socket to read data every 5 seconds.
+ */
 void TCP_Configuration(void)
 {
    sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -178,10 +207,15 @@ void TCP_Configuration(void)
 
    
 }
-void *thread_Camera(void *arg){
 
-		
-		
+/*
+ * It is a camera thread function.
+ * Button Continue to operate the camera
+ * in the while thread in the camera thread according to the operation of the interface.
+ * I created a file with the current time using time.h.
+ */
+
+void *thread_Camera(void *arg){
 		
 		FILE *fp=NULL;
 		int ret, receive, cnt=0;
@@ -212,7 +246,12 @@ void *thread_Camera(void *arg){
 }
 
 		
-
+/*
+ * It is a server thread function.
+ * According to the data value read through the socket, 
+ * if the data is 1, the pwm of the servo motor is controlled and 
+ * the code is configured so that the motor rotates 90 degrees to 90 degrees.
+ */
 void *thread_Server(void *arg)
 {
 	int cnt=0;
