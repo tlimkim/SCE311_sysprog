@@ -33,8 +33,8 @@ int lcd = 0;
 void lcd_print (char * msg, int temp)
 {   
   int lcd;
-  char s1[10];
-  char print[50];
+  char s1[10] = { 0, };
+  char print[50] = { 0, };
 
   wiringPiSetup();
 
