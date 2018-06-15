@@ -185,9 +185,6 @@ void TCP_Configuration(void)
 /*take a picture*/
 void *thread_Camera(void *arg){
 
-		
-		
-		
 		FILE *fp=NULL;
 		int ret, receive, cnt=0;
 		char fname[256];
@@ -206,8 +203,8 @@ void *thread_Camera(void *arg){
         	fp=popen(command,"r"); //execute commands
         	pclose(fp);
 		char cmd[300];
-		sprintf(cmd, "sudo mv %s /var/www/html",fname); //Upload photos to the web
-		fp=popen(cmd,"r");
+		sprintf(cmd, "sudo mv %s /var/www/html",fname); //commands for Uploading photos to the web
+		fp=popen(cmd,"r"); //execute commands
 		receive=1;
 		pclose(fp);
 		}
