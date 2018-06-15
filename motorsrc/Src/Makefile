@@ -1,6 +1,6 @@
 KERNELDIR = /lib/modules/$(shell uname -r)/build
 
-obj-m := button_dev.o joystick_dev.o
+obj-m := button_dev.o
  
 PWD := $(shell pwd)
 
