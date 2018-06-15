@@ -12,7 +12,6 @@
 #include <string.h>
 #include <sys/socket.h> 
 #include <arpa/inet.h>
-
 #include <unistd.h> 
 
 #define DEV_PATH "/dev/button_dev"
@@ -38,8 +37,7 @@ int fd;
 int sockfd, newsockfd, portno = 8888, clilen;
 char buffer[256];
 struct sockaddr_in serv_addr, cli_addr;
-int n;
-int data;
+int n, data;
 
 /*
  * The main function basically sets
@@ -117,9 +115,9 @@ int Joystick_Read(void)
 {
 	int tmp, value[3];
 
-	value[0] = analogRead (PCF + 0) ;	// read analog data for moved joystick 
- 	value[1] = analogRead (PCF + 1) ;
- 	value[2] = analogRead (PCF + 2) ;
+	value[0] = analogRead (PCF + 0) ;	// read analog data for moved joystick X
+ 	value[1] = analogRead (PCF + 1) ;	// read analog data for moved joystick Y
+ 	value[2] = analogRead (PCF + 2) ;	// read analog data for moved joystick Key
 
  	if(value[0]==value[1] && value[1]==value[2]) tmp = 0; // left
  	else if(value[1] > 250 && value[0] < 225 && value[2] < 225) tmp = 2; // up
