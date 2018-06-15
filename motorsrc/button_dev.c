@@ -19,14 +19,19 @@ MODULE_LICENSE("GPL");
 static unsigned int gpioButton = 23;   ///< hard coding the button gpio for this example to P9_27 (GPIO115)
 static unsigned int numberPresses = 0;  ///< For information, store the number of button presses
 
+/*
+ * Open the gpio 23 port to the kernel with the gpio open function, and set it to input.
+ */
 int gpio_open(struct inode* pinode, struct file* pfile){
    printk(KERN_INFO "GPIO_TEST: Initializing the GPIO_TEST Baby_Button\n");
    gpio_request(gpioButton, "sysfs");       // Set up the gpioButton
    gpio_direction_input(gpioButton);        // Set the button GPIO to be an input
-   // gpio_set_debounce(gpioButton, 200);      // Debounce the button with a delay of 200ms
-   //gpio_export(gpioButton, false);          // Causes gpio23 to appear in /sys/class/gpio
    return 0;
 }
+
+/*
+ * When you are finished, unport the gpio port and use the free function.
+ */
 int gpio_close(struct inode* pinode, struct file* pfile){
    printk(KERN_INFO "GPIO_TEST: The button state is currently: %d\n", gpio_get_value(gpioButton));
    printk(KERN_INFO "GPIO_TEST: The button was pressed %d times\n", numberPresses);
@@ -35,6 +40,10 @@ int gpio_close(struct inode* pinode, struct file* pfile){
    printk(KERN_INFO "GPIO_TEST: Goodbye from the Baby!\n");
    return 0;
 }
+
+/*
+ * It reads the gpio value and passes the read value to the code running in the user application through the copy to user function.
+ */
 
 ssize_t simple_read (struct file *pfile, char __user *buffer, size_t length, loff_t *offset){
 //printk(KERN_ALERT "Read simple char drv\n");
