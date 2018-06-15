@@ -66,9 +66,9 @@ int main(void){
   	pthread_t a_thread[3];
   	void *thread_result[3];
 
-  	res[0] = pthread_create(&a_thread[0], NULL, thread_joystick, (void *)message); // Create Therad function
- 	res[1] = pthread_create(&a_thread[1], NULL, thread_Server, (void *)message);
-	res[2] = pthread_create(&a_thread[2], NULL, thread_Camera, (void *)message);
+  	res[0] = pthread_create(&a_thread[0], NULL, thread_joystick, (void *)message); // Create Therad function for Joystick
+ 	res[1] = pthread_create(&a_thread[1], NULL, thread_Server, (void *)message); // Create Therad function for Server
+	res[2] = pthread_create(&a_thread[2], NULL, thread_Camera, (void *)message); // Create Therad function for Camera
 
  	if (res[0] != 0) {
    	    perror("Thread0 creation Joystick failed");
@@ -84,9 +84,9 @@ int main(void){
   	}
   	  printf("Waiting for thread to finish...\n");
  		
-	res[0] = pthread_join(a_thread[0], &thread_result[0]);	// close thread function
-	res[1] = pthread_join(a_thread[1], &thread_result[1]);
-	res[2] = pthread_join(a_thread[2], &thread_result[2]);
+	res[0] = pthread_join(a_thread[0], &thread_result[0]);	// close thread function for Joystick
+	res[1] = pthread_join(a_thread[1], &thread_result[1]);  // close thread function for Server
+	res[2] = pthread_join(a_thread[2], &thread_result[2]);  // close thread function for Camera
 
  	if (res[0] != 0) {
    	    perror("Thread0 join failed");
