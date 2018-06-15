@@ -181,6 +181,8 @@ void TCP_Configuration(void)
 
    
 }
+
+/*take a picture*/
 void *thread_Camera(void *arg){
 
 		
@@ -190,21 +192,21 @@ void *thread_Camera(void *arg){
 		int ret, receive, cnt=0;
 		char fname[256];
 		 while(1){
-      		int ret = read(fd, &receive, sizeof(receive));
+      		int ret = read(fd, &receive, sizeof(receive)); //get data from button 
       		time_t t = time(NULL);
 		struct tm tm =*localtime(&t);
       
      		 if(receive == 0){ 
 	   	 if(cnt > 1){   
-     		 char command[30] = "raspistill -o "; 
+     		 char command[30] = "raspistill -o "; //Commands for taking pictures
        		  sprintf(fname,"%d-0%d-0%d-%d:%d:%d",
-         		tm.tm_year+1900, tm.tm_mon +1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+         		tm.tm_year+1900, tm.tm_mon +1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); //Save current time as photo name
         		 printf("pressed!\n");
          	strcat(command, fname);
-        	fp=popen(command,"r");
+        	fp=popen(command,"r"); //execute commands
         	pclose(fp);
 		char cmd[300];
-		sprintf(cmd, "sudo mv %s /var/www/html",fname);
+		sprintf(cmd, "sudo mv %s /var/www/html",fname); //Upload photos to the web
 		fp=popen(cmd,"r");
 		receive=1;
 		pclose(fp);
